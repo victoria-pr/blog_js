@@ -22,6 +22,7 @@ let boton = document.getElementById("guardar");
             document.getElementById("lista").appendChild(li);
             document.getElementById("input").value = "";
         }
+
         function clickImportant(event) {
             let element = event.target;
             if(element.classList.contains("fa-close")){
@@ -35,6 +36,7 @@ let boton = document.getElementById("guardar");
             element.classList.toggle("important")
 
         }
+
         function deleteParent(element){
             let parent = element.parentElement;
             let text = parent.innerText;
@@ -43,7 +45,7 @@ let boton = document.getElementById("guardar");
                 parent.remove();
 
             }
-            
+
         }
 
         function alreadyExists(text){
