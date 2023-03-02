@@ -14,9 +14,9 @@ let boton = document.getElementById("guardar");
 
             let li = document.createElement("li");
             let icono = document.createElement("i");//crear icono
-            icono.classList.add("fa","fa-close");//añadir clases
+            icono.classList.add("fa","fa-close");//añadir clases a ese icono
             li.innerText = text;
-            li.appendChild(icono);//meterlo en li
+            li.appendChild(icono);//meter el icono en el li
             li.addEventListener("click",clickImportant)
 
             document.getElementById("lista").appendChild(li);
