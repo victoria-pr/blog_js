@@ -1,8 +1,3 @@
-//submit
-//donde añadir el Listener?
-//conseguir valores del input
-//meter los valores en blog seccion
-
 let form = document.getElementById("blog_form");
         form.addEventListener("submit",createPost);
 
@@ -12,10 +7,10 @@ function createPost(event){
     let h3 = document.createElement("h3");
     let p = document.createElement("p");
     let article = document.createElement("article");
-    
-    let icono2 = document.createElement("i");
-    let iconoarticle = document.createElement("i");
-    article.addEventListener("click",clickImportant);
+    let iconoBorrar = document.createElement("i");
+    let iconoEditar = document.createElement("i");
+    iconoBorrar.addEventListener("click",deletePost);
+    iconoEditar .addEventListener("click",updatePost);
     
     let textTitulo = document.getElementById("titulo").value;
     let textContenido = document.getElementById("contenido").value;
@@ -23,11 +18,13 @@ function createPost(event){
     h3.innerText = textTitulo;
     p.innerText = textContenido;
 
-    icono2.classList.add("fa","fa-close");
+    iconoBorrar.classList.add("fa","fa-close");
+    iconoEditar.classList.add("fa","fa-pencil");
     
     article.appendChild(h3);
     article.appendChild(p);
-    article.appendChild(icono2);
+    article.appendChild(iconoBorrar);
+    article.appendChild(iconoEditar);
   
     document.getElementById("blog_seccion").appendChild(article);
    
@@ -35,7 +32,8 @@ function createPost(event){
     document.getElementById("contenido").value = "";
 }
 
-function deleteParent(element){
+function deletePost(event){
+    let element = event.target;
     let parent = element.parentElement;
     let text = parent.innerText;
     if(confirm("¿Deseas borrar este elemento? \n" + text)){
@@ -45,14 +43,38 @@ function deleteParent(element){
     }
 
 }
+function updatePost(event){
+    let element = event.target;
+    let parent = element.parentElement;
+    let titulo = parent.getElementsByTagName("h3")[0].innerText;
+    let texto = parent.getElementsByTagName("p")[0].innerText;
+    let inputTitulo = document.createElement("input");
+    let textArea = document.createElement("textArea");
+    let br = document.createElement("br");
+
+    inputTitulo.setAttribute("type","text");
+    inputTitulo.value = titulo;
+    textArea.value = texto;
+    parent.appendChild(inputTitulo);
+    parent.appendChild(br);
+    parent.appendChild(textArea);
+
+}
 
 
 
 
 
+/*function deletePost(event){
+    let element = event.target;
+    let parent = element.parentElement;
+    parent.remove();
+    let text = parent.getElementByTagName("h3").innerText;
+    if(confirm("¿Deseas borrar este elemento? \n" + text)){
 
-
-
+        parent.remove();
+    }
+}*/
 
 
 /*
