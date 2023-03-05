@@ -1,4 +1,36 @@
 let form = document.getElementById("blog_form");
+form.addEventListener("submit",createPost);
+
+function createPost(event){
+    event.preventDefault();
+    let titulo = document.getElementById("titulo").value //extraemos los valores de id="titulo" e indicamos que eso será el titulo del post
+    let contenido = document.getElementById("contenido").value //extraemos los valores de id="contenido" e indicamos que eso será el contenido del post
+
+    let article = document.createElement("article"); //creamos un articulo -donde metremos el h3 y el p
+    let h3 = document.createElement("h3"); //creamos un h3 para el titulo
+    let p = document.createElement("p"); //creamos un p para el contenido del post
+
+    h3.innerText = titulo; //indicamos que los valores extraido en la linea 6 se los aplicamos al h3 que acabamos de crear en la linea 9
+    p.innerText = contenido; //indicamos que los valores extraido en la linea 7 se los aplicamos al p que acabamos de crear en la linea 10
+
+    article.appendChild(h3); //línea 16 y 17: indicamos que tanto h3 como p son hijos del article que hemos creado en la linea 9
+    article.appendChild(p);
+
+    document.getElementById("blog_seccion").appendChild(article); //indicamos que el article que se crea con h3 y p, es un hijo de la section ya creada en el html con el id "blog_seccion"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* let form = document.getElementById("blog_form");
         form.addEventListener("submit",createPost);
 
 function createPost(event){
@@ -102,4 +134,4 @@ function updatePost(event){
     );
     parent.getElementsByTagName("h3")[0].remove();
     parent.getElementsByTagName("p")[0].remove();
-}
+} */
