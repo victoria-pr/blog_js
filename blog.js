@@ -10,7 +10,7 @@ function createPost(event){
     let iconoBorrar = document.createElement("i");
     let iconoEditar = document.createElement("i");
     iconoBorrar.addEventListener("click",deletePost);
-    iconoEditar .addEventListener("click",updatePost);
+    iconoEditar.addEventListener("click",updatePost);
     
     let textTitulo = document.getElementById("titulo").value;
     let textContenido = document.getElementById("contenido").value;
@@ -54,10 +54,7 @@ function crearIcono(simnolo,callback){
     icono.classList.add("fa",simbolo);
     icono.addEventListener("click",callback);
     return icono;
-
 }
-
-
 
 function cancelEdit(event,textoTitulo,textoParrafo){
     let element = event.target;
@@ -69,7 +66,10 @@ function cancelEdit(event,textoTitulo,textoParrafo){
     parent.appendChild(titulo);
     parent.appendChild(parrafo);
     parent.getElementsByTagName("input")[0].remove();
-    parent.getElementsByTagName("texArea")[0].remove();
+    parent.getElementsByTagName("textArea")[0].remove();
+    let iconoEditar = crearIcono("fa-pencil", updatePost);
+    parent.appendChild(iconoEditar);
+    element.remove();   
 
 }
 
@@ -100,4 +100,6 @@ function updatePost(event){
 
     }
     );
+    parent.getElementsByTagName("h3")[0].remove();
+    parent.getElementsByTagName("p")[0].remove();
 }
