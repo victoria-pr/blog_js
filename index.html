@@ -11,31 +11,50 @@
 <body>
     <section id="seccion_lista">
         <h1>Listas de la compra</h1>
+
         <input type="text" id="input">
         <button id="guardar">Guardar</button>
+        
         <ul id="lista">
         </ul>
     <script defer src="../listacompra/lista.js"></script>
-    </section>
+</section>
+
     <section id="seccion_blog">
         <h1 class="titulo1">Blog</h1>
+        
         <section id="blog_form_seccion">
             <form action="" id="blog_form">
+                
                 <fieldset>
-                    <legend>Crear un nuevo post</legend>
+                    <legend>Crear un nuevo post</legend> 
+
                     <label for="titulo">Título</label>
                     <input type="tex" id="titulo" name="titulo">
                     <br>
+                    <br>
+
                     <label for="contenido">Contenido</label>
                     <textarea name="contenido" id="contenido" cols="30" rows="10" placeholder="escribe algo..."></textarea>
                     <br>
+
                     <input id="cargar" type="submit" value="Crear">
                 </fieldset>
+
             </form>
         </section>
     </section>
+    
+    <section id ="buscadorBlog"></section>
+    <input type="text" id="buscador" placeholder="busca un post....">   
+    <script src="buscador.js"></script>
+    </section>
+
     <section id="blog_seccion"> 
         <script src="./blog.js"></script>   
     </section>
+    
+   
+
 </body>
 </html>
