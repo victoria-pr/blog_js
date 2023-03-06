@@ -65,7 +65,6 @@ function alreadyExists(text){
     return false;
 }
 
-
 /* let boton = document.getElementById("guardar");
         boton.addEventListener("click",guardarElemento);
 

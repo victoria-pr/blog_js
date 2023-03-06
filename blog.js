@@ -24,8 +24,38 @@ function createPost(titulo,contenido){
     article.appendChild(p);
     article.appendChild(iconoEditar); //2-ICONOEDITARR-DECIR QUE ES HIJO DE ARTICLE PARA QUE APAREZCA
     article.appendChild(iconoBorrar); //2-ICONOBORRAR-DECIR QUE ES HIJO DE ARTICLE PARA QUE APAREZCA (sin esta parte, no aparece)
-    
+
     document.getElementById("blog_seccion").appendChild(article); //indicamos que el article que se crea con h3 y p, es un hijo de la section ya creada en el html con el id "blog_seccion"
+}
+
+function savePost(event){
+    let element = event.target;
+    let parent = element.parentElement;
+    let titulo = parent.getElementsByTagName("input")[0].value;
+    let contenido = parent.getElementsByTagName("textArea")[0].value;
+    let h3 = document.createElement ("h3")
+    let p = document.createElement ("p")
+    
+    h3.innerText = titulo;
+    p.innerText = contenido;
+    parent.appendChild(h3);
+    parent.appendChild(p);
+
+    parent.getElementsByTagName("input")[0].remove();
+    parent.getElementsByTagName("textArea")[0].remove();
+    element.remove();
+    parent.querySelector(".fa-close").remove();
+    let iconoEditar = crearIcono("fa-edit",updatePost);
+    parent.appendChild(iconoEditar);
+
+    let iconoBorrar = crearIcono("fa-trash",deletePost);
+    parent.appendChild(iconoBorrar);
+
+    let breaks = parent.getElementsByTagName("br");
+    breaks = [...breaks];
+    breaks.forEach(element => {
+        element.remove();
+    });
 }
 
 function crearIcono(simbolo, callback){ //la idea de esta función es crearla para todos los iconos que se vayan a utilizar. Aparte, crear la función que se le va a aplicar y arriba (en createPost) juntar ambos.
@@ -34,15 +64,6 @@ function crearIcono(simbolo, callback){ //la idea de esta función es crearla pa
     icono.addEventListener("click", callback);
     return icono;
 }
-
-/* function crearIconoEditar(){
-    let iconoEditar = document.createElement("i");
-    iconoEditar.classList.add("fa,"fa-pencil");
-    iconoEditar.addEventListener("click", callback)
-    return iconoEditar;
-
-} */
-
 
 function deletePost(event){
     let element = event.target; //¿? siempre que es event se pone esto?
@@ -64,9 +85,18 @@ function cancelEdit(event,textoTitulo,textoParrafo) {
     parent.appendChild(parrafo);
     parent.getElementsByTagName("input")[0].remove();
     parent.getElementsByTagName("textarea")[0].remove();
-    let iconoEditar = crearIcono("fa-pencil",updatePost);
+    let iconoEditar = crearIcono("fa-edit",updatePost);
     parent.appendChild(iconoEditar);
-    element.remove();//esto hace que el botón desaparezca cuando entramos en editar
+    element.remove();
+    parent.querySelector(".fa-save").remove();
+    let iconoBorrar = crearIcono("fa-trash",deletePost);
+    parent.appendChild(iconoBorrar);
+
+    let breaks = parent.getElementsByTagName("br");
+    breaks = [...breaks];
+    breaks.forEach(element => {
+        element.remove();
+    });
   }
 
 
@@ -84,7 +114,8 @@ function updatePost(event){
     let iconoCancelar = crearIcono("fa-close",function(event){
         cancelEdit(event,titulo,texto);  
     })
-    element.remove(); //esto hace que el botón desaparezca cuando cancelamos
+
+    let iconoGuardar = crearIcono("fa-save",savePost);
 
     inputTitulo.setAttribute("type", "text"); //aunque por defecto al input será 'type = "text' aquí lo especificamos por si acaso
     inputTitulo.value = titulo; //relacionamos que el valor del imput que creamos al darle a editar, título será el titulo q extraemos del h3
@@ -95,19 +126,20 @@ function updatePost(event){
     parent.appendChild(br)
     parent.appendChild(textArea);
     parent.appendChild(iconoCancelar);
+    parent.appendChild(iconoGuardar);
     
     //Indicaremos esto para q borre el h3 y p ya creados
     /* parent.getElementsByTagName("h3")[0].remove(); */
     let titulo1 = parent.getElementsByTagName("h3")[0];
     titulo1.remove();
     parent.getElementsByTagName("p")[0].remove(); 
+    element.remove(); 
+    parent.querySelector(".fa-trash").remove();
 }
 
 
 createPost("Manzana", "tralalalalalalaaaaa");
 createPost("Sandía", "tralalalalalalaaaaa");
-
-
 
 
 
